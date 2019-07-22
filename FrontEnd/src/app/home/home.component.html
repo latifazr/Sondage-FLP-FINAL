@@ -1,0 +1,92 @@
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<a id="menu-toggle" href="#" class="navbar-toggle">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</a>
+			<a class="navbar-brand" href="home.xhtml">
+				logo
+			</a>
+		</div>
+		<div id="sidebar-wrapper" class="sidebar-toggle">
+			<ul class="sidebar-nav">
+				<li>
+					<a href="javascript:void(0)" id="newSubject" (click)="newS()">New subject</a>
+				</li>
+				<li>
+					<a href="javascript:void(0)" id="mySubjects" (click)="myS()">My subjects</a>
+				</li>
+				<li>
+					<a href="javascript:void(0)" id="allSubjects" (click)="allS()">all subjects</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<div *ngIf="show_new">
+	<h2>New subject</h2>
+	<form [formGroup]="addNewSubject">
+		<div class="container" style="margin-left: 30%">
+			<div class="row">
+				<div class="col-sm-4 col-md-4">
+					<label class="col-sm-6" for="inputSubject">Title Subject</label>
+					<input type="text" class="form-control" formControlName="title" id="inputSubject"
+						placeholder="Title"></div>
+			</div><br>
+			<div class="row">
+				<div class="col-sm-4 col-md-4">
+					<label class="col-sm-6" for="inputSubject">Description subject</label>
+					<textarea class="form-control counted" formControlName="description" name="subject"
+						placeholder="Description" rows="5" style="margin-bottom:10px;"></textarea>
+				</div>
+			</div>
+			<button class="btn btn-primary" type="submit" click="addnewSubject()">Add new subject</button>
+		</div>
+	</form>
+</div>
+
+<div *ngIf="show_my">
+	<div class="container" style="margin-left: 20%">
+		<div class="row">
+			<div class="col-md-4" *ngFor="let sujet of mySujets">
+				<div class="card bg-light">
+					<div class="card-body">
+						<h5 class="card-title border-bottom pb-3">{{sujet.titre}}<a
+								class="float-right btn btn-sm btn-info d-inline-flex share"><i
+									class="fas fa-share-alt"></i></a></h5>
+						<p class="card-text">{{sujet.description}}</p>
+						<a class="btn btn-sm btn-info float-right">{{sujet.choix}} <i
+								class="fas fa-angle-double-right"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div *ngIf="show_all">
+	<div class="container" style="margin-left: 20%">
+		<div class="row">
+			<div class="col-md-4" *ngFor="let sujet of allSujets">
+				<div class="card bg-light">
+					<div class="card-body">
+						<h5 class="card-title border-bottom pb-3">{{sujet.titre}} <a
+								class="float-right btn btn-sm btn-info d-inline-flex share"><i
+									class="fas fa-share-alt"></i></a></h5>
+						<p class="card-text">{{sujet.description}}</p>
+						<a class="btn btn-sm btn-info float-right">{{sujet.choix}}<i
+								class="fas fa-angle-double-right"></i></a>
+						<span class="btn btn-primary" (click)="voteSujet(sujet._id)">
+							<i [ngClass]="sujet.user_vote == id_user ? 'red' : 'null'"
+								class="fa fa-heart" style="color:white;font-size: 20px;"></i>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
