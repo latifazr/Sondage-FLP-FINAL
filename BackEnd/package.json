@@ -17,7 +17,7 @@
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^2.2.0",
     "mongodb": "^3.2.7",
-    "mongoose": "^5.6.1",
+    "mongoose": "^5.7.5",
     "mongose": "0.0.2-security",
     "passport": "^0.4.0",
     "passport-http-bearer": "^1.0.1",
